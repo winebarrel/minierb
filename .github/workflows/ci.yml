@@ -1,14 +1,28 @@
 name: build
-on: [push, pull_request]
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+defaults:
+  run:
+    shell: bash -xe {0}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     runs-on: ubuntu-latest
     env:
-        MRUBY_VERSION: 3.1.0
+      MRUBY_VERSION: 3.1.0
     steps:
       - uses: actions/checkout@v2
       - name: Install packages
-        run: | 
+        run: |
           sudo apt-get -qq update
           sudo apt-get -qq install rake bison git gperf
       - name: Clone mruby

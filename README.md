@@ -2,7 +2,7 @@
 
 [![build](https://github.com/winebarrel/minierb/actions/workflows/ci.yml/badge.svg)](https://github.com/winebarrel/minierb/actions/workflows/ci.yml)
 
-ERB cli built with mruby.
+Single binary ERB template processor built with mruby.
 
 ## Installation
 

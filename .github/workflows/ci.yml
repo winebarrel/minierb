@@ -6,7 +6,7 @@ jobs:
     env:
         MRUBY_VERSION: 3.1.0
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Install packages
         run: | 
           sudo apt-get -qq update

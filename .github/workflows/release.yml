@@ -34,14 +34,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        id: x
-      - run: ls -laR
       - uses: docker/setup-qemu-action@v3
         with:
           platforms: arm64
       - name: Build
         run: |
-          docker run -v ${{ github.workspace }}:/mnt -w /mnd --platform linux/arm64 rubylang/ruby rake
+          docker run -v $(pwd):/mnt -w /mnt --platform linux/arm64 rubylang/ruby rake
           file
       - name: Upload
         uses: actions/upload-artifact@v4

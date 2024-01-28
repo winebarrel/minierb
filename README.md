@@ -1,27 +1,27 @@
-# minierb   [![build](https://github.com/winebarrel/minierb/actions/workflows/ci.yml/badge.svg)](https://github.com/winebarrel/minierb/actions/workflows/ci.yml)
-Minierb class
-## install by mrbgems
-- add conf.gem line to `build_config.rb`
+# minierb
 
-```ruby
-MRuby::Build.new do |conf|
+[![build](https://github.com/winebarrel/minierb/actions/workflows/ci.yml/badge.svg)](https://github.com/winebarrel/minierb/actions/workflows/ci.yml)
 
-    # ... (snip) ...
+ERB cli built with mruby.
 
-    conf.gem :github => 'winebarrel/minierb'
-end
+## Installation
+
+Download binary from [releases page](https://github.com/winebarrel/minierb/releases/latest).
+
+## Usage
+
+```sh
+$ echo '<%= 1 + 2 %>' | minierb
+3
+
+$ cat test.erb
+<%- if true -%>
+<%- user = ENV["USER"] -%>
+<%= user %>
+<%= user =~ /wa/ %>
+<%- end -%>
+
+$ minierb test.erb
+sugawara
+4
 ```
-## example
-```ruby
-p Minierb.hi
-#=> "hi!!"
-t = Minierb.new "hello"
-p t.hello
-#=> "hello"
-p t.bye
-#=> "hello bye"
-```
-
-## License
-under the MIT License:
-- see LICENSE file

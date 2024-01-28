@@ -22,7 +22,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build
-        run: rake
+        run: |
+          rake
+          file mruby/build/host/bin/minierb
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
@@ -39,7 +41,7 @@ jobs:
           platforms: arm64
       - name: Build
         run: |
-          docker run -v $(pwd):/mnt -w /mnt --platform linux/arm64 rubylang/ruby rake
+          docker run -v $(pwd):/mnt -w /mnt --platform linux/arm64 ruby rake
           file mruby/build/host/bin/minierb
       - name: Upload
         uses: actions/upload-artifact@v4

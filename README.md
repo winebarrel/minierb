@@ -9,7 +9,7 @@ ERB cli built with mruby.
 Download binary from [releases page](https://github.com/winebarrel/minierb/releases/latest).
 
 ```sh
-$ wget https://github.com/winebarrel/minierb/releases/download/v0.1.0/minierb-aarch64-darwin.gz
+$ wget https://github.com/winebarrel/minierb/releases/download/v0.1.1/minierb-aarch64-darwin.gz
 $ gunzip minierb-aarch64-darwin.gz
 $ mv minierb-aarch64-darwin minierb
 $ chmod +x minierb

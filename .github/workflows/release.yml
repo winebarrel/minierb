@@ -19,20 +19,14 @@ env:
 jobs:
   package:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        arch:
-          - docker: amd64 # used by docker create --platform
-          - docker: arm64
-
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
         with:
-          platforms: ${{ matrix.arch }}
+          platforms: arm64
       - name: Run in Docker
         run: |
-          docker run --rm -v $(pwd):/${{ github.workspace }} -w ${{ github.workspace }} --platform linux/${{ matrix.arch }} ubuntu uname -a
+          docker run --rm -v $(pwd):/${{ github.workspace }} -w ${{ github.workspace }} --platform linux/arm64 ubuntu uname -a
       # - run: echo 'FROM ubuntu:20.04' > Dockerfile
       # - name: Build and push
       #   uses: docker/build-push-action@v2

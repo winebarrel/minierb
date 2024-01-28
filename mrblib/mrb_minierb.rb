@@ -1,9 +1,3 @@
-class Minierb
-  def self.eval(src)
-    ERB.new(src, nil, "-").result
-  end
-end
-
 def __main__(argv)
   src = if ARGV.empty?
           STDIN.read
@@ -13,5 +7,5 @@ def __main__(argv)
           end
         end
 
-  print Minierb.eval(src)
+  print ERB.new(src, nil, "-").result
 end

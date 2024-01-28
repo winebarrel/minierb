@@ -1,4 +1,4 @@
-MRUBY_CONFIG=File.expand_path(ENV["MRUBY_CONFIG"] || ".github_actions_build_config.rb")
+MRUBY_CONFIG=File.expand_path(ENV["MRUBY_CONFIG"] || "build_config.rb")
 MRUBY_VERSION=ENV["MRUBY_VERSION"] || "3.1.0"
 
 file :mruby do

@@ -22,7 +22,7 @@ jobs:
     strategy:
       matrix:
         arch:
-          - docker: amd64  # used by docker create --platform
+          - docker: amd64 # used by docker create --platform
           - docker: arm64
         distro:
           - container: "ubuntu:jammy"
@@ -33,16 +33,9 @@ jobs:
         uses: docker/setup-qemu-action@v1
         with:
           platforms: ${{ matrix.arch }}
-
       - name: Run in Docker
         run: |
-          docker run \
-            --rm \
-            -v $(pwd):/${{ github.workspace }} \
-            -w ${{ github.workspace }} \
-            --platform linux/${{ matrix.arch }} \
-            ${{ matrix.distro }} \
-            uname -a
+          docker run --rm -v $(pwd):/${{ github.workspace }} -w ${{ github.workspace }} --platform linux/${{ matrix.arch }} ${{ matrix.distro }} uname -a
       # - run: echo 'FROM ubuntu:20.04' > Dockerfile
       # - name: Build and push
       #   uses: docker/build-push-action@v2
@@ -114,28 +107,28 @@ jobs:
   #         path: x86_64-linux-musl
   #     - run: gzip -c x86_64-linux-musl/minierb > minierb-x86_64-linux-musl.gz
 
-      # - name: Download aarch64-linux-musl build
-      #   uses: actions/download-artifact@v4
-      #   with:
-      #     name: minierb-aarch64-linux-musl
-      #     path: aarch64-linux-musl
-      # - run: gzip -c aarch64-linux-musl/minierb > minierb-aarch64-linux-musl.gz
+  # - name: Download aarch64-linux-musl build
+  #   uses: actions/download-artifact@v4
+  #   with:
+  #     name: minierb-aarch64-linux-musl
+  #     path: aarch64-linux-musl
+  # - run: gzip -c aarch64-linux-musl/minierb > minierb-aarch64-linux-musl.gz
 
-      # - name: Download x86_64-darwin build
-      #   uses: actions/download-artifact@v4
-      #   with:
-      #     name: minierb-x86_64-darwin
-      #     path: x86_64-darwin\
-      # - run: gzip -c x86_64-darwin/minierb > minierb-x86_64-darwin.gz
+  # - name: Download x86_64-darwin build
+  #   uses: actions/download-artifact@v4
+  #   with:
+  #     name: minierb-x86_64-darwin
+  #     path: x86_64-darwin\
+  # - run: gzip -c x86_64-darwin/minierb > minierb-x86_64-darwin.gz
 
-      # - name: Download aarch64-darwin build
-      #   uses: actions/download-artifact@v4
-      #   with:
-      #     name: minierb-aarch64-darwin
-      #     path: aarch64-darwin
-      # - run: gzip -c aarch64-darwin/minierb > minierb-aarch64-darwin.gz
+  # - name: Download aarch64-darwin build
+  #   uses: actions/download-artifact@v4
+  #   with:
+  #     name: minierb-aarch64-darwin
+  #     path: aarch64-darwin
+  # - run: gzip -c aarch64-darwin/minierb > minierb-aarch64-darwin.gz
 
-      # - name: Release
-      #   uses: ncipollo/release-action@v1
-      #   with:
-      #     artifacts: "*.gz"
+  # - name: Release
+  #   uses: ncipollo/release-action@v1
+  #   with:
+  #     artifacts: "*.gz"

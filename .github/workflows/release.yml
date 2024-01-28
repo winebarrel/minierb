@@ -19,9 +19,6 @@ env:
 jobs:
   build-linux:
     runs-on: ubuntu-latest
-    container:
-      image: ubuntu
-
     steps:
       - uses: actions/checkout@v4
       - uses: docker/setup-qemu-action@v3

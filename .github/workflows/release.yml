@@ -55,12 +55,25 @@ jobs:
           name: minierb-x86_64-darwin
           path: ./mruby/build/host/bin/minierb
           retention-days: 1
+  build-macos-m1:
+    runs-on: macos-latest-xlarge
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: rake
+      - name: Upload aarch64-darwin build
+        uses: actions/upload-artifact@v4
+        with:
+          name: minierb-aarch64-darwin
+          path: ./mruby/build/host/bin/minierb
+          retention-days: 1
 
   release:
     runs-on: ubuntu-latest
     needs:
       - build-linux
       - build-macos
+      - build-macos-m1
     permissions:
       contents: write
 
@@ -80,11 +93,17 @@ jobs:
         with:
           name: minierb-x86_64-darwin
           path: x86_64-darwin
+      - name: Download aarch64-darwin build
+        uses: actions/download-artifact@v4
+        with:
+          name: minierb-aarch64-darwin
+          path: aarch64-darwin
       - name: Archive
         run: |
           gzip -c x86_64-linux-musl/minierb > minierb-x86_64-linux-musl.gz
           gzip -c aarch64-linux-musl/minierb > minierb-aarch64-linux-musl.gz
           gzip -c x86_64-darwin/minierb > minierb-x86_64-darwin.gz
+          gzip -c aarch64-darwin/minierb > minierb-aarch64-darwin.gz
       - name: Release
         uses: ncipollo/release-action@v1
         with:

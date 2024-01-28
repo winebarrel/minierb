@@ -39,7 +39,7 @@ jobs:
           platforms: arm64
       - name: Build
         run: |
-          docker run -v $(pwd):/mnt -w /mnd --platform linux/arm64 rubylang/ruby rake
+          docker run -v ${{ github.workspace }}:/mnt -w /mnd --platform linux/arm64 rubylang/ruby rake
           file
       - name: Upload
         uses: actions/upload-artifact@v4

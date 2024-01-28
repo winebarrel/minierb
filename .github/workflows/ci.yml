@@ -14,21 +14,12 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  MRUBY_VERSION: 3.1.0
+
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      MRUBY_VERSION: 3.1.0
     steps:
       - uses: actions/checkout@v4
-      - name: Test
-        run: rake test
-      - uses: goto-bus-stop/setup-zig@v2
-      - name: Build x86_64-linux-musl
-        env:
-          MRUBY_BUILD_TARGET: x86_64-linux-musl
-        run: rake
-      - name: Build aarch64-linux-musl
-        env:
-          MRUBY_BUILD_TARGET: aarch64-linux-musl
-        run: rake
+      - run: rake test

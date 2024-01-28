@@ -17,16 +17,14 @@ env:
   MRUBY_VERSION: 3.1.0
 
 jobs:
-  package:
+  build-linux:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+      - uses: docker/setup-qemu-action@v3
         with:
           platforms: arm64
-      - name: Run in Docker
-        run: |
-          docker run --rm -v $(pwd):/${{ github.workspace }} -w ${{ github.workspace }} --platform linux/arm64 rubylang/ruby uname -a
+      - name: Build linux-arm64
+        run: docker run -v $(pwd):/mnt -w /mnd --platform linux/arm64 rubylang/ruby rake
       # - run: echo 'FROM ubuntu:20.04' > Dockerfile
       # - name: Build and push
       #   uses: docker/build-push-action@v2

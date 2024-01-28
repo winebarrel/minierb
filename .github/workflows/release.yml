@@ -17,15 +17,32 @@ env:
   MRUBY_VERSION: 3.1.0
 
 jobs:
-  build-linux:
+  package:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch:
+          - docker: amd64  # used by docker create --platform
+          - docker: arm64
+        distro:
+          - container: "ubuntu:jammy"
+          - container: "ubuntu:focal"
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: docker/setup-qemu-action@v3
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
         with:
-          platforms: arm64
-      - run: |
-          docker run --platform linux/arm64 $(pwd):/mnt -w /mnt ruby rake
+          platforms: ${{ matrix.arch }}
+
+      - name: Run in Docker
+        run: |
+          docker run \
+            --rm \
+            -v $(pwd):/${{ github.workspace }} \
+            -w ${{ github.workspace }} \
+            --platform linux/${{ matrix.arch }} \
+            ${{ matrix.distro }} \
+            uname -a
       # - run: echo 'FROM ubuntu:20.04' > Dockerfile
       # - name: Build and push
       #   uses: docker/build-push-action@v2

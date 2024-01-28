@@ -1,0 +1,7 @@
+name: minierb
+description: Minierb class
+author: winebarrel
+website: https://github.com/winebarrel/minierb
+protocol: git
+repository: https://github.com/winebarrel/minierb.git
+license: MIT

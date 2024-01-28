@@ -40,7 +40,7 @@ jobs:
       - name: Build
         run: |
           docker run -v $(pwd):/mnt -w /mnt --platform linux/arm64 rubylang/ruby rake
-          file
+          file mruby/build/host/bin/minierb
       - name: Upload
         uses: actions/upload-artifact@v4
         with:

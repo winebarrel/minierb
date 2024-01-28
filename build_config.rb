@@ -2,7 +2,7 @@ MRUBY_BUILD_TARGET = ENV["MRUBY_BUILD_TARGET"]
 
 if !MRUBY_BUILD_TARGET
   MRuby::Build.new do |conf|
-    toolchain :gcc
+    toolchain :clang
     conf.gembox "default"
     conf.gem File.expand_path(File.dirname(__FILE__))
     conf.enable_test

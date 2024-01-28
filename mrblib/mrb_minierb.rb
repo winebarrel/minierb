@@ -4,7 +4,7 @@ def __main__(argv)
         else
           ARGV.map do |f|
             File.read(f)
-          end
+          end.join
         end
 
   print ERB.new(src, nil, "-").result

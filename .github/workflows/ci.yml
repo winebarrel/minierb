@@ -28,7 +28,7 @@ jobs:
       - name: Clone mruby
         run: git clone https://github.com/mruby/mruby.git
       - name: Copy build file
-        run: cp -fp ./.github_actions_build_config.rb ./mruby/build_config.rb
+        run: cp -fp ./build_config.rb ./mruby/build_config.rb
       - name: Test
         working-directory: mruby
         run: rake all test

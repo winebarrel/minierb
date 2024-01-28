@@ -24,9 +24,6 @@ jobs:
         arch:
           - docker: amd64 # used by docker create --platform
           - docker: arm64
-        distro:
-          - container: "ubuntu:jammy"
-          - container: "ubuntu:focal"
 
     steps:
       - name: Set up QEMU
@@ -35,7 +32,7 @@ jobs:
           platforms: ${{ matrix.arch }}
       - name: Run in Docker
         run: |
-          docker run --rm -v $(pwd):/${{ github.workspace }} -w ${{ github.workspace }} --platform linux/${{ matrix.arch }} ${{ matrix.distro }} uname -a
+          docker run --rm -v $(pwd):/${{ github.workspace }} -w ${{ github.workspace }} --platform linux/${{ matrix.arch }} ubuntu uname -a
       # - run: echo 'FROM ubuntu:20.04' > Dockerfile
       # - name: Build and push
       #   uses: docker/build-push-action@v2

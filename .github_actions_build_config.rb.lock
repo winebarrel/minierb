@@ -3,3 +3,20 @@ mruby:
   version: 3.1.0
   release_no: 30100
   git_commit: 1bec3392300e99ea037a8e18aa9694c83390cea3
+builds:
+  host:
+    https://github.com/iij/mruby-env.git:
+      url: https://github.com/iij/mruby-env.git
+      branch: HEAD
+      commit: 056ae324451ef16a50c7887e117f0ea30921b71b
+      version: 0.0.0
+    https://github.com/k0kubun/mruby-erb.git:
+      url: https://github.com/k0kubun/mruby-erb.git
+      branch: HEAD
+      commit: 978257e478633542c440c9248e8cdf33c5ad2074
+      version: 0.0.0
+    https://github.com/mattn/mruby-onig-regexp.git:
+      url: https://github.com/mattn/mruby-onig-regexp.git
+      branch: HEAD
+      commit: bcfa173e3a24a9f86c2950f78607a320ee057c8a
+      version: 0.0.0

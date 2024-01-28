@@ -1,10 +1,17 @@
 class Minierb
-  def bye
-    self.hello + " bye"
+  def self.eval(src)
+    ERB.new(src, nil, "-").result
   end
 end
 
 def __main__(argv)
-  raise NotImplementedError, "Please implement Kernel#__main__ in your .rb file."
-end
+  src = if ARGV.empty?
+          STDIN.read
+        else
+          ARGV.map do |f|
+            File.read(f)
+          end
+        end
 
+  print Minierb.eval(src)
+end

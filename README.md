@@ -20,15 +20,59 @@ $ chmod +x minierb
 ```sh
 $ echo '<%= 1 + 2 %>' | minierb
 3
+```
 
-$ cat test.erb
-<%- if true -%>
-<%- user = ENV["USER"] -%>
-<%= user %>
-<%= user =~ /wa/ %>
+```erb
+<%-
+to = ENV["MAIL_TO"]
+priorities = [
+  "Run Ruby Quiz",
+  "Document Modules",
+  "Answer Questions on Ruby Talk",
+]
+-%>
+From:  James Edward Gray II <james@grayproductions.net>
+To:  <%= to %>
+Subject:  Addressing Needs
+
+<%= to[/\w+/] %>:
+
+Just wanted to send a quick note assuring that your needs are being
+addressed.
+
+I want you to know that my team will keep working on the issues,
+especially:
+
+<%# ignore numerous minor requests -- focus on priorities %>
+<%- priorities.each do |priority| -%>
+* <%= priority %>
 <%- end -%>
 
-$ minierb test.erb
-sugawara
-4
+Thanks for your patience.
+
+James Edward Gray II
+```
+```sh
+$ export MAIL_TO="Community Spokesman <spokesman@ruby_community.org>"
+$ export PRIORITIES="Run Ruby Quiz,Document Modules,Answer Questions on Ruby Talk"
+$ minierb mail.erb
+To:  Community Spokesman <spokesman@ruby_community.org>
+Subject:  Addressing Needs
+
+Community:
+
+Just wanted to send a quick note assuring that your needs are being
+addressed.
+
+I want you to know that my team will keep working on the issues,
+especially:
+
+
+* Run Ruby Quiz
+* Document Modules
+* Answer Questions on Ruby Talk
+
+Thanks for your patience.
+
+James Edward Gray II
 ```

@@ -51,7 +51,9 @@ James
 ```sh
 $ export MAIL_TO="Community Spokesman <spokesman@example.com>"
 $ export PRIORITIES="Run Ruby Quiz,Document Modules,Answer Questions on Ruby Talk"
+
 $ minierb mail.erb
+From:  James <james@example.com>
 To:  Community Spokesman <spokesman@example.com>
 Subject:  Addressing Needs
 

@@ -104,7 +104,8 @@ jobs:
           gzip -c aarch64-linux-musl/minierb > minierb-aarch64-linux-musl.gz
           gzip -c x86_64-darwin/minierb > minierb-x86_64-darwin.gz
           gzip -c aarch64-darwin/minierb > minierb-aarch64-darwin.gz
+          sha256sum *.gz > checksums.txt
       - name: Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "*.gz"
+          artifacts: "*.gz,checksums.txt"

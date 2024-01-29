@@ -25,11 +25,7 @@ $ echo '<%= 1 + 2 %>' | minierb
 ```erb
 <%-
 to = ENV["MAIL_TO"]
-priorities = [
-  "Run Ruby Quiz",
-  "Document Modules",
-  "Answer Questions on Ruby Talk",
-]
+priorities = ENV["PRIORITIES"].split(",").map(&:strip)
 -%>
 From:  James <james@example.com>
 To:  <%= to %>

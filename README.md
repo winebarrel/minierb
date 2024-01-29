@@ -31,7 +31,7 @@ priorities = [
   "Answer Questions on Ruby Talk",
 ]
 -%>
-From:  James Edward Gray II <james@grayproductions.net>
+From:  James <james@example.com>
 To:  <%= to %>
 Subject:  Addressing Needs
 
@@ -50,13 +50,13 @@ especially:
 
 Thanks for your patience.
 
-James Edward Gray II
+James
 ```
 ```sh
-$ export MAIL_TO="Community Spokesman <spokesman@ruby_community.org>"
+$ export MAIL_TO="Community Spokesman <spokesman@example.com>"
 $ export PRIORITIES="Run Ruby Quiz,Document Modules,Answer Questions on Ruby Talk"
 $ minierb mail.erb
-To:  Community Spokesman <spokesman@ruby_community.org>
+To:  Community Spokesman <spokesman@example.com>
 Subject:  Addressing Needs
 
 Community:
@@ -74,5 +74,5 @@ especially:
 
 Thanks for your patience.
 
-James Edward Gray II
+James
 ```
